@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-def random_sample(df, sample_size = None, variable = None, fraction = None):
-    if not variable:
+def random_sample(df, sample_size = None, fraction = None, column = None):
+    if not column:
         if not fraction:
             if not sample_size:
                 return df.sample()
@@ -15,11 +15,11 @@ def random_sample(df, sample_size = None, variable = None, fraction = None):
     else:
         if not fraction:
             if not sample_size:
-                return df[variable].sample()
+                return df[column].sample()
             else:
-                return df[variable].sample(size = sample_size)
+                return df[column].sample(size = sample_size)
         elif not sample_size:
-            return df[variable].sample(frac = fraction)
+            return df[column].sample(frac = fraction)
         else:
             return None
     
