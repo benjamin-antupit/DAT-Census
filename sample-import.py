@@ -8,4 +8,4 @@ def sample_import(file_name):
     print(data.describe())
 
 
-sample_import("input/Census Data Generation Mock Survey_January 11, 2021_18.36 - Sheet1 (1).csv")
+sample_import("input/Mock Census Data - Sheet1.csv")
