@@ -19,5 +19,5 @@ def stratified_sample(df, column, n, weights=None):
         l[i] = df_region
         i += 1
 
-    slices = [pfSlice.random_sample(len(pfSlice.index) // size) for pfSlice in l]
+    slices = [random_sample(pfSlice, len(pfSlice.index) // size) for pfSlice in l]
     df_final = pd.concat(slices)
