@@ -17,7 +17,7 @@ def random_sample(df, sample_size = None, fraction = None, column = None):
             if not sample_size:
                 return df[column].sample()
             else:
-                return df[column].sample(size = sample_size)
+                return df[column].sample(n = sample_size)
         elif not sample_size:
             return df[column].sample(frac = fraction)
         else:
