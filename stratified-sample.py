@@ -23,8 +23,7 @@ def stratified_sample(df, column):
     elif lower(column) == "Race": size = race
 
     #creates list of the buckets
-    slices = [dfSlice.random_sample(len(dfSlice.index) * size[dfSlice[column].iloc[0]]) for dfSlice in dfSlices]
+    slices = [random_sample(dfSlice, len(dfSlice.index) * size[dfSlice[column].iloc[0]]) for dfSlice in dfSlices]
 
     #sticks them together, returns
     return pd.concat(slices)
-
