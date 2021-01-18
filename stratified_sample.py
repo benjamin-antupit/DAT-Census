@@ -13,7 +13,7 @@ def stratified_sample(df, column):
     i = 0
 
     #breaks up slices by column parameter, stores them in empty list
-    for region, df_region in df.groupby(column):
+    for df_region in df.groupby(by=column):
         dfSlices[i] = df_region
         i += 1
 
