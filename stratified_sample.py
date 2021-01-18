@@ -6,7 +6,6 @@ from random_sample import random_sample
 def stratified_sample(df, column, n=None, fraction = None):
     if not n:
         n = round(fraction * len(df))
-        print(n)
 
     #temporary solution until more data on mixed is recieved
     if column == "Q24":
@@ -39,7 +38,11 @@ def stratified_sample(df, column, n=None, fraction = None):
     elif column == "Q24": size = race
 
     #creates list of the buckets
-    slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
+    try:
+        slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
+    except ValueError: 
+        print("Not enough datapoints.")
+        return pd.DataFrame({})
 
     #sticks them together, returns
     return pd.concat(slices)
