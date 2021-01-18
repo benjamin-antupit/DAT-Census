@@ -61,7 +61,7 @@ def main():
         outputs.append(data)
     elif "4" in options or "0" in options:
         # simple random
-        outputs.append(random_sample.random_sample(data.copy()))
+        outputs.append(random_sample.random_sample(data.copy(), None, 0.5))
     elif "5" in options or "0" in options:
         # stratified by grade
         outputs.append(stratified_sample.stratified_sample(data.copy(), "Q23"))
