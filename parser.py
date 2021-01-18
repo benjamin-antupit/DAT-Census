@@ -28,8 +28,7 @@ def parse(file_name: str) -> ():
               axis=1, inplace=True)
     # data.dropna(inplace=True)
     # print(data.columns)
-
-    # TODO: fix double header row
+    data.fillna("")
     return data, header_labels
 
 
