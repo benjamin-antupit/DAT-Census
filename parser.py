@@ -20,10 +20,10 @@ def parse(file_name: str) -> ():
     # for index, column in data.iteritems():
     #   headers.append(column.values[0] + " (" + column.values[1] + ")")
     # data.columns = headers  # must be same length as columns
-    # print(data.head())
+
     # print(data.describe())
 
-    data.drop([1], inplace=True)
+    data.drop(index=0, inplace=True)
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage', "Finished"],
               axis=1, inplace=True)
     # data.dropna(inplace=True)
@@ -76,11 +76,11 @@ def main():
 
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24 (What is your racial or ethnic identification? (select all that apply))",4)))
+        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", 4)))
 
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22 (What is your gender identity? - Selected Choice)",4)))
+        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", 4)))
 
     if "7" in options or "0" in options:
         # weighted by parent education
