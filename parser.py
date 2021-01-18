@@ -1,23 +1,30 @@
 import pandas as pd
 
-import random_sample
-import stratified_sample
-import weighted_sample
+from random_sample import random_sample
+from stratified_sample import stratified_sample
+from weighted_sample import weighted_sample
 
 
 def createAllOutputs(data_frame_list: list):
-    for i in range(len(data_frame_list)):
-        if not data_frame_list[i].empty:
-            data_frame_list[i].to_csv("output/" + str(i) + ".csv", index=False)
+    for title, df in data_frame_list:
+        if not df.empty:
+            df.to_csv("output/" + title + ".csv", index=False)
 
 
 def parse(file_name: str) -> pd.DataFrame:
-    data = pd.read_csv(file_name, header=[0, 1])
+    data = pd.read_csv(file_name, header=None)
+    headers = []
+    for index, column in data.iteritems():
+        headers.append(column.values[0] + " (" + column.values[1] + ")")
+    data.columns = headers  # must be same length as columns
     # print(data.head())
     # print(data.describe())
 
-    data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage'],
-              inplace=True, level=1, errors='ignore')
+    print(list(data))
+    data.drop([0,1], inplace=True)
+    data.drop(columns=['Status (Response Type)', 'Progress (Progress)', 'RecordedDate (Recorded Date)',
+                       'DistributionChannel (Distribution Channel)', 'UserLanguage (User Language)',
+                       "Finished (Finished)"], axis=1, inplace=True)
     # data.dropna(inplace=True)
     # print(data.columns)
 
@@ -52,25 +59,25 @@ def main():
 
     if "1" in options or "0" in options:
         # parsed only
-        outputs.append(data.copy())
-    elif "2" in options or "0" in options:
+        outputs.append(("Parsed", data.copy()))
+    if "2" in options or "0" in options:
         # TODO mult choice only
-        outputs.append(data)
-    elif "3" in options or "0" in options:
+        outputs.append(("Parsed_Multiple_Choice", data.copy()))
+    if "3" in options or "0" in options:
         # TODO free response only
-        outputs.append(data)
-    elif "4" in options or "0" in options:
+        outputs.append(("Parsed_Free_Response", data.copy()))
+    if "4" in options or "0" in options:
         # simple random
-        outputs.append(random_sample.random_sample(data.copy(), None, 0.5))
-    elif "5" in options or "0" in options:
+        outputs.append(("Simple_Random_Sample_Parsed", random_sample(data.copy(), None, 0.5)))
+    if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(stratified_sample.stratified_sample(data.copy(), ["Q23"]))
-    elif "6" in options or "0" in options:
+        outputs.append(("Stratified_Grade_Parsed", stratified_sample(data.copy(), ["Q23"])))
+    if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(stratified_sample.stratified_sample(data.copy(), "Q26"))
-    elif "7" in options or "0" in options:
+        outputs.append(("Stratified_Household_Parsed", stratified_sample(data.copy(), "Q26")))
+    if "7" in options or "0" in options:
         # weighted by parent education
-        outputs.append(weighted_sample.weighted_sample(data.copy(), "Q25", None))
+        outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", None)))
 
     createAllOutputs(outputs)
 
