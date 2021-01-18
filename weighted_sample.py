@@ -1,7 +1,12 @@
 import pandas as pd
 import numpy as np
 
-def weighted_sample(df, column, n, weights=None):
+def weighted_sample(df, column, n=None, frac=None, weights=None):
+    if not n and not frac:
+        return pd.DataFrame()
+    if not n:
+        n = Math.floor(len(df.index)*frac)
+        
     if not weights:
         #weight each distinct value in column equally
         weights = {}
