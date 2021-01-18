@@ -1,12 +1,14 @@
 import pandas as pd
-import numpy as np
 
-import random_sample, stratified_sample, weighted_sample
+import random_sample
+import stratified_sample
+import weighted_sample
+
 
 def createAllOutputs(data_frame_list: list):
     for i in range(len(data_frame_list)):
-        if df := data_frame_list[i]:
-            df.to_csv("output/" + str(i) + ".csv", index=False)
+        if not data_frame_list[i].empty:
+            data_frame_list[i].to_csv("output/" + str(i) + ".csv", index=False)
 
 
 def parse(file_name: str) -> pd.DataFrame:
@@ -15,8 +17,8 @@ def parse(file_name: str) -> pd.DataFrame:
     # print(data.describe())
 
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage'],
-              inplace=True, errors='ignore')
-    # data.dropna(inplace=True)
+              inplace=True, level=1, errors='ignore')
+    # data.dropna(inplace=True)R
     # print(data.columns)
 
     # TODO: fix double header row
@@ -34,7 +36,7 @@ def getTextResponse(df: pd.DataFrame):
 def main():
     print("DAT Census Parsing & Sampling\n")
 
-    data = parse(input("Please input name of CSV: "))
+    data = parse("input/Mock Census Data - Sheet1.csv")  # parse(input("Please input name of CSV: "))
 
     outputs = []
     print("Select one or more example output options:")
@@ -53,10 +55,10 @@ def main():
         outputs.append(data.copy())
     elif "2" in options or "0" in options:
         # TODO mult choice only
-        outputs.append()
+        outputs.append(data)
     elif "3" in options or "0" in options:
         # TODO free response only
-        outputs.append()
+        outputs.append(data)
     elif "4" in options or "0" in options:
         # simple random
         outputs.append(random_sample.random_sample(data.copy()))
