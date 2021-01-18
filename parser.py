@@ -61,7 +61,7 @@ def main():
     if "1" in options or "0" in options:
         # parsed only
         outputs.append(("Parsed", data.copy()))
-        
+
     if "2" in options or "0" in options:
         # TODO mult choice only
         outputs.append(("Parsed_Multiple_Choice", data.copy()))
@@ -76,11 +76,11 @@ def main():
 
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", 4)))
+        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24",4)))
 
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", 4)))
+        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22",4)))
 
     if "7" in options or "0" in options:
         # weighted by parent education
