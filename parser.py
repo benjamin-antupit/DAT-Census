@@ -20,7 +20,6 @@ def parse(file_name: str) -> pd.DataFrame:
     # print(data.head())
     # print(data.describe())
 
-    print(list(data))
     data.drop([0,1], inplace=True)
     data.drop(columns=['Status (Response Type)', 'Progress (Progress)', 'RecordedDate (Recorded Date)',
                        'DistributionChannel (Distribution Channel)', 'UserLanguage (User Language)',
@@ -41,7 +40,7 @@ def getTextResponse(df: pd.DataFrame):
 
 
 def main():
-    print("DAT Census Parsing & Sampling\n")
+    print("\nDAT Census Parsing & Sampling\n")
 
     data = parse("input/Mock Census Data - Sheet1.csv")  # parse(input("Please input name of CSV: "))
 
@@ -71,13 +70,13 @@ def main():
         outputs.append(("Simple_Random_Sample_Parsed", random_sample(data.copy(), None, 0.5)))
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Grade_Parsed", stratified_sample(data.copy(), ["Q23"])))
+        outputs.append(("Stratified_Grade_Parsed", stratified_sample(data.copy(), ["Q23 (What is your grade level?)"])))
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Household_Parsed", stratified_sample(data.copy(), "Q26")))
+        outputs.append(("Stratified_Household_Parsed", stratified_sample(data.copy(), ["Q26 (With what religious affiliation do you most closely identify? - Selected Choice)"])))
     if "7" in options or "0" in options:
         # weighted by parent education
-        outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", None)))
+        outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), ["Q25 (What is the highest level of education completed by either of your parents or guardians?)"], None)))
 
     createAllOutputs(outputs)
 
