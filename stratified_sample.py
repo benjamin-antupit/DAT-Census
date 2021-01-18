@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
-import random_sample
-import sample_import
+from random_sample import random_sample
 
 
 def stratified_sample(df, column):
