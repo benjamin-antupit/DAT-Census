@@ -7,7 +7,10 @@ def stratified_sample(df, column, n=None, fraction = None):
     if not n:
         n = round(fraction * len(df))
 
-    #temporary solution until more data on mixed is recieved
+    '''
+    temporary solution until more data on mixed is recieved as we have no data on each "bucket" of multiracial
+    easier to just bucket them together in the meantime until further data is recieved
+    '''
     if column == "Q24":
         df.loc[df['Q24'].str.contains(','), 'Q24'] = 'Multiracial'
 
