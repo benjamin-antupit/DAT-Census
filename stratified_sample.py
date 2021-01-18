@@ -26,9 +26,9 @@ def stratified_sample(df, column, n):
 
 
     #determines where to search for the percentages for each bucket
-    if column == "Q22 (What is your gender identity? - Selected Choice)": size = gender
-    elif column == "Q23 (What is your grade level?)": size = grade
-    elif column == "Q24 (What is your racial or ethnic identification? (select all that apply))": size = race
+    if column == "Q22": size = gender
+    elif column == "Q23": size = grade
+    elif column == "Q24": size = race
 
 
     #creates list of the buckets
