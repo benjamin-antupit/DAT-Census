@@ -5,30 +5,32 @@ from stratified_sample import stratified_sample
 from weighted_sample import weighted_sample
 
 
-def createAllOutputs(data_frame_list: list):
+def createAllOutputs(data_frame_list: list, header_labels):
     for title, df in data_frame_list:
         if not df.empty:
+            df = pd.concat((df, header_labels), axis=1)
+            df.drop(df.columns[-1], axis=1, inplace=True)
+            df.dropna(how="all", inplace=True)
             df.to_csv("output/" + title + ".csv", index=False)
 
 
-def parse(file_name: str) -> pd.DataFrame:
-    data = pd.read_csv(file_name, header=None)
-    headers = []
-    for index, column in data.iteritems():
-        headers.append(column.values[0] + " (" + column.values[1] + ")")
-    data.columns = headers  # must be same length as columns
+def parse(file_name: str) -> ():
+    data = pd.read_csv(file_name, header=0)
+    header_labels = data.iloc[0]
+    # for index, column in data.iteritems():
+    #   headers.append(column.values[0] + " (" + column.values[1] + ")")
+    # data.columns = headers  # must be same length as columns
     # print(data.head())
     # print(data.describe())
 
-    data.drop([0,1], inplace=True)
-    data.drop(columns=['Status (Response Type)', 'Progress (Progress)', 'RecordedDate (Recorded Date)',
-                       'DistributionChannel (Distribution Channel)', 'UserLanguage (User Language)',
-                       "Finished (Finished)"], axis=1, inplace=True)
+    data.drop([1], inplace=True)
+    data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage', "Finished"],
+              axis=1, inplace=True)
     # data.dropna(inplace=True)
     # print(data.columns)
 
     # TODO: fix double header row
-    return data
+    return data, header_labels
 
 
 def getMultipleChoice(df: pd.DataFrame):
@@ -42,7 +44,7 @@ def getTextResponse(df: pd.DataFrame):
 def main():
     print("\nDAT Census Parsing & Sampling\n")
 
-    data = parse("input/Mock Census Data - Sheet1.csv")  # parse(input("Please input name of CSV: "))
+    data, header_labels = parse("input/Mock Census Data - Sheet1.csv")  # parse(input("Please input name of CSV: "))
 
     outputs = []
     print("Select one or more example output options:")
@@ -59,26 +61,32 @@ def main():
     if "1" in options or "0" in options:
         # parsed only
         outputs.append(("Parsed", data.copy()))
+        
     if "2" in options or "0" in options:
         # TODO mult choice only
         outputs.append(("Parsed_Multiple_Choice", data.copy()))
+
     if "3" in options or "0" in options:
         # TODO free response only
         outputs.append(("Parsed_Free_Response", data.copy()))
+
     if "4" in options or "0" in options:
         # simple random
         outputs.append(("Simple_Random_Sample_Parsed", random_sample(data.copy(), None, 0.5)))
+
     if "5" in options or "0" in options:
         # stratified by grade
         outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24 (What is your racial or ethnic identification? (select all that apply))",4)))
+
     if "6" in options or "0" in options:
         # stratified by how many people you live with
         outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22 (What is your gender identity? - Selected Choice)",4)))
+
     if "7" in options or "0" in options:
         # weighted by parent education
-        outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), ["Q25 (What is the highest level of education completed by either of your parents or guardians?)"], None)))
+        outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", None)))
 
-    createAllOutputs(outputs)
+    createAllOutputs(outputs, header_labels)
 
 
 main()
