@@ -51,8 +51,8 @@ def main():
     print("2 - Parsed data (multiple choice only)")
     print("3 - Parsed data (free response only)")
     print("4 - Parse data (Simple Random Sample)")
-    print("5 - Parse data (Stratified Sampling by grade)")
-    print("6 - Parse data (Stratified Sampling by people in household)")
+    print("5 - Parse data (Stratified Sampling by race)")
+    print("6 - Parse data (Stratified Sampling by gender)")
     print("7 - Parse data (Weighted Sampling by highest parental education)")
     options = input("Type one or more numbers to create selected outputs: ")
 
@@ -70,10 +70,10 @@ def main():
         outputs.append(("Simple_Random_Sample_Parsed", random_sample(data.copy(), None, 0.5)))
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Grade_Parsed", stratified_sample(data.copy(), ["Q23 (What is your grade level?)"])))
+        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24 (What is your racial or ethnic identification? (select all that apply))",4)))
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Household_Parsed", stratified_sample(data.copy(), ["Q26 (With what religious affiliation do you most closely identify? - Selected Choice)"])))
+        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22 (What is your gender identity? - Selected Choice)",4)))
     if "7" in options or "0" in options:
         # weighted by parent education
         outputs.append(("Weighted_Education_Parsed", weighted_sample(data.copy(), ["Q25 (What is the highest level of education completed by either of your parents or guardians?)"], None)))
