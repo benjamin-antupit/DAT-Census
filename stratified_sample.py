@@ -5,6 +5,7 @@ from random_sample import random_sample
 
 def stratified_sample(df, column, n):
 
+    #Remove, temporary solution to the issue of dealing with mixed differnt than the DEI survey
     df.drop(df.tail(1).index,inplace=True)
     #Data
     #At some point, this would be great as an import, however at this time the file is not computer readable so hardcode is faster
