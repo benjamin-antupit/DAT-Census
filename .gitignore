@@ -1,9 +1,2 @@
 *.pyc
 __pycache__/*
-__pycache__/stratified_sample.cpython-38.pyc
-__pycache__/weighted_sample.cpython-38.pyc
-output/Stratified_Gender_Parsed.csv
-output/Stratified_Race_Parsed.csv
-__pycache__/stratified_sample.cpython-38.pyc
-__pycache__/weighted_sample.cpython-38.pyc
-*.pyc
