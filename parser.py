@@ -18,7 +18,7 @@ def parse(file_name: str) -> pd.DataFrame:
 
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage'],
               inplace=True, level=1, errors='ignore')
-    # data.dropna(inplace=True)R
+    # data.dropna(inplace=True)
     # print(data.columns)
 
     # TODO: fix double header row
