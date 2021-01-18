@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-from sample_methods import *
+from sample_methods import random_sample, stratified_sample, weighted_sample
 
 
 def createAllOutputs(data_frame_list: list):
