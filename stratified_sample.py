@@ -6,7 +6,6 @@ from random_sample import random_sample
 def stratified_sample(df, column, n=None, fraction = None):
 
     #temporary solution until more data on mixed is recieved
-    print(df['Q24'])
     if column == "Q24":
         df.loc[df['Q24'].str.contains(','), 'Q24'] = 'Multiracial'
 
