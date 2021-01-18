@@ -20,7 +20,7 @@ def stratified_sample(df, column):
 
     #determines where to search for the percentages for each bucket
     if lower(column) == "gender": size = gender
-    elif lower(column) == "Race": size = race
+    elif lower(column) == "race": size = race
 
     #creates list of the buckets
     slices = [random_sample(dfSlice, len(dfSlice.index) * size[dfSlice[column].iloc[0]]) for dfSlice in dfSlices]
