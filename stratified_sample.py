@@ -4,7 +4,7 @@ from random_sample import random_sample
 
 
 def stratified_sample(df, column, n=None, fraction = None):
-    #tranforming fraction to number of datapoints
+    #tranforming fraction to number of datapoints if necessary
     if not n:
         n = round(fraction * len(df))
 
