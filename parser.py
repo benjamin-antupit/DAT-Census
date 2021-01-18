@@ -33,11 +33,11 @@ def parse(file_name: str) -> ():
 
 
 def getMultipleChoice(df: pd.DataFrame):
-    return df
+    return df.drop(columns=[])
 
 
-def getTextResponse(df: pd.DataFrame):
-    return df
+def getFreeTextResponse(df: pd.DataFrame):
+    return df.drop(columns=[])
 
 
 def main():
@@ -63,11 +63,11 @@ def main():
 
     if "2" in options or "0" in options:
         # TODO mult choice only
-        outputs.append(("Parsed_Multiple_Choice", data.copy()))
+        outputs.append(("Parsed_Multiple_Choice", getMultipleChoice(data.copy())))
 
     if "3" in options or "0" in options:
         # TODO free response only
-        outputs.append(("Parsed_Free_Response", data.copy()))
+        outputs.append(("Parsed_Free_Response", getFreeTextResponse(data.copy())))
 
     if "4" in options or "0" in options:
         # simple random
@@ -75,11 +75,11 @@ def main():
 
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24",fraction=0.5)))
+        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", fraction=0.5)))
 
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22",sample_size=4)))
+        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", sample_size=4)))
 
     if "7" in options or "0" in options:
         # weighted by parent education
