@@ -40,6 +40,7 @@ def stratified_sample(df, column, n=None, fraction = None):
     #creates list of the buckets
     try:
         slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
+
     except ValueError: 
         print("Not enough datapoints.")
         return pd.DataFrame({})

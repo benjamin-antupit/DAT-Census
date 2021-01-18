@@ -75,11 +75,11 @@ def main():
 
     if "5" in options or "0" in options:
         # stratified by grade
-        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", fraction=0.5)))
+        outputs.append(("Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", fraction=0.25)))
 
     if "6" in options or "0" in options:
         # stratified by how many people you live with
-        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", sample_size=4)))
+        outputs.append(("Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", fraction = 0.5)))
 
     if "7" in options or "0" in options:
         # weighted by parent education
