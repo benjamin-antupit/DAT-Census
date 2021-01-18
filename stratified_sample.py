@@ -3,7 +3,8 @@ import numpy as np
 from random_sample import random_sample
 
 
-def stratified_sample(df, column, n):
+def stratified_sample(df, column, n=None, fraction = None):
+
     #temporary solution until more data on mixed is recieved
     print(df['Q24'])
     if column == "Q24":
@@ -36,7 +37,13 @@ def stratified_sample(df, column, n):
     elif column == "Q24": size = race
 
     #creates list of the buckets
-    slices = [random_sample(dfSlice[1], round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
+    if n:
+        slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
+
+    elif fraction:
+        slices = [random_sample(dfSlice[1], fraction=fraction * size[dfSlice[1][column].iloc[0]]) for dfSlice in dfSlices]
+
+    else: return "No sample size or fraction of data was specified."
 
     #sticks them together, returns
     return pd.concat(slices)
