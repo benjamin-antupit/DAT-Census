@@ -4,6 +4,9 @@ from random_sample import random_sample
 
 
 def stratified_sample(df, column, n=None, fraction = None):
+    if not n:
+        n = round(fraction * len(df))
+        print(n)
 
     #temporary solution until more data on mixed is recieved
     if column == "Q24":
@@ -36,13 +39,7 @@ def stratified_sample(df, column, n=None, fraction = None):
     elif column == "Q24": size = race
 
     #creates list of the buckets
-    if n:
-        slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
-
-    elif fraction:
-        slices = [random_sample(dfSlice[1], fraction=fraction * size[dfSlice[1][column].iloc[0]]) for dfSlice in dfSlices]
-
-    else: return "No sample size or fraction of data was specified."
+    slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in dfSlices]
 
     #sticks them together, returns
     return pd.concat(slices)
