@@ -14,7 +14,7 @@ def createAllOutputs(data_frame_list: list):
             df.to_csv("output/" + title + ".csv", index=False)  # Create CSVs
 
 
-def parse(file_name: str) -> ():
+def parseData(file_name: str) -> ():
     data = pd.read_csv(file_name, header=0)  # Read CSV, create headers from first row
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage', "Finished",
                        "Q16 - Parent Topics", "Q16 - Topics"], axis=1, inplace=True)  # Remove redundant columns
@@ -24,34 +24,39 @@ def parse(file_name: str) -> ():
     return data, header_labels
 
 
-def getMultipleChoice(df: pd.DataFrame, headers):
+def parseCodebook(codebook_name: str) -> pd.DataFrame:
+    codebook = pd.read_csv(codebook_name, header=0)
+    codebook.dropna(how="all", inplace=True)  # Remove empty rows
+    return codebook
+
+
+def getMultipleChoice(df: pd.DataFrame, headers, codebook: pd.DataFrame):
     headers = headers.copy()
     # Remove free response questions
     for i in range(2):
-        (headers, df)[i].drop(["Q1_5_TEXT", "Q16", "Q18", "Q22_4_TEXT", "Q26_11_TEXT"], inplace=True, axis=i)
+        (headers, df)[i].drop(list(codebook.loc[~codebook['OptionsProvided']]['Question ID']), inplace=True, axis=i)
     return df, headers
 
 
-def getFreeTextResponse(df: pd.DataFrame, headers):
+def getFreeTextResponse(df: pd.DataFrame, headers, codebook: pd.DataFrame):
     headers = headers.copy()
     # Remove multiple choice questions
     for i in range(2):
-        (headers, df)[i].drop(
-            ["Q1_1", "Q1_2", "Q1_3", "Q1_4", "Q1_5", "Q3", "Q4_1", "Q5", "Q6_1", "Q6_2", "Q6_3", "Q6_4",
-             "Q9_1", "Q9_2", "Q9_3", "Q9_4", "Q10_1", "Q12_1", "Q12_2", "Q12_3", "Q12_4", "Q12_5",
-             "Q12_6", "Q12_7", "Q13_1", "Q13_2", "Q14_1", "Q14_2", "Q14_3", "Q14_4", "Q15_1", "Q15_2",
-             "Q15_3", "Q15_4", "Q17", "Q19_1", "Q19_2", "Q19_3", "Q19_4", "Q19_5", "Q19_6", "Q19_7",
-             "Q21", "Q22", "Q23", "Q24", "Q25", "Q26", "Q27"], inplace=True, axis=i)
+        (headers, df)[i].drop(list(codebook.loc[codebook['OptionsProvided']]['Question ID']), inplace=True, axis=i)
     return df, headers
 
 
-def main(file_name=None):
+def main(file_name=None, codebook_name=None):
     print("\nDAT Census Parsing & Sampling\n")
 
     if not file_name:
-        file_name = input("Please input name of CSV: ")
+        file_name = input("Please input name of results CSV: ")
 
-    data, header_labels = parse(file_name)
+    if not codebook_name:
+        codebook_name = input("Please input name of codebook CSV: ")
+
+    data, header_labels = parseData(file_name)
+    codebook = parseCodebook(codebook_name)
 
     outputs = []
     print("Select one or more example output options:")
@@ -71,11 +76,11 @@ def main(file_name=None):
 
     if "2" in options or "0" in options:
         outputs.append(
-            ("2_Parsed_Multiple_Choice", *getMultipleChoice(data.copy(), header_labels)))
+            ("2_Parsed_Multiple_Choice", *getMultipleChoice(data.copy(), header_labels, codebook)))
 
     if "3" in options or "0" in options:
         outputs.append(
-            ("3_Parsed_Free_Response", *getFreeTextResponse(data.copy(), header_labels)))
+            ("3_Parsed_Free_Response", *getFreeTextResponse(data.copy(), header_labels, codebook)))
 
     if "4" in options or "0" in options:
         outputs.append(
@@ -96,4 +101,4 @@ def main(file_name=None):
     createAllOutputs(outputs)  # Create output CSVs with proper headers
 
 
-main("input/Mock_Census_Data.csv")
+main("input/Mock_Census_Data.csv", "input/Mock_Census_Codebook.csv")
