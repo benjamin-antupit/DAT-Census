@@ -1,0 +1,40 @@
+Question ID,OptionsProvided,QuestionType,DataType,Response Options,Minimum (inclusive),Maximum (inclusive)
+Q1_1,TRUE,choice,number,range,0,5
+Q2_1,TRUE,choice,number,range,0,10
+Q3_1,TRUE,choice,number,range,0,10
+Q4_1,TRUE,choice,number,range,0,9
+Q4_2,TRUE,choice,number,range,0,9
+Q4_3,TRUE,choice,number,range,0,9
+Q4_4,TRUE,choice,number,range,0,9
+Q5_1,TRUE,choice,number,range,1,6
+Q5_2,TRUE,choice,number,range,1,6
+Q6_1,TRUE,choice,number,range,5,10
+Q6_2,TRUE,choice,number,range,5,10
+Q7_1,TRUE,rank,number,range,1,4
+Q7_2,TRUE,rank,number,range,1,4
+Q7_3,TRUE,rank,number,range,1,4
+Q7_4,TRUE,rank,number,range,1,4
+Q8_1,TRUE,rank,number,range,1,4
+Q8_2,TRUE,rank,number,range,1,4
+Q8_3,TRUE,rank,number,range,1,4
+Q8_4,TRUE,rank,number,range,1,4
+Q9_1,TRUE,rank,number,range,1,5
+Q9_2,TRUE,rank,number,range,1,5
+Q9_3,TRUE,rank,number,range,1,5
+Q9_4,TRUE,rank,number,range,1,5
+Q9_5,TRUE,rank,number,range,1,5
+Q10_3,TRUE,choice,number,range,1,5
+Q11,TRUE,choice,text,"STEM,Humanities",,
+Q12_1,TRUE,choice,text,"Math,Science,History,English,Language,Arts,CADS",,
+Q12_2,TRUE,choice,text,"Math,Science,History,English,Language,Arts,CADS",,
+Q13,FALSE,open,text,,,
+Q14,TRUE,choice,text,"Yes,No",,
+Q15,TRUE,choice,text,"Math,Science,History,English,Language,Arts,CADS",,
+Q17,TRUE,choice,text,"Male,Female,Non-binary,Other,Prefer not to say",,
+Q17_4_TEXT,FALSE,open,text,,,
+Q18,TRUE,choice,number,range,9,12
+Q19,TRUE,choice,text,"American Indian or Alaskan Native,Middle Eastern,Indian,Other Asian,Black or African American,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,White,Other,I prefer not to respond",,
+Q20,TRUE,choice,text,"Did not finish highschool,High school diploma or G.E.D,Attended college but did not complete degree,Associates degree(A.A., A.S., etc.),Bachelor's degree(B.A., B.A., etc.),Master's degree(M.A., M.S., etc.),Doctoral or professional degree(Ph.D., J.D., M.D., etc.)",,
+Q21,TRUE,choice,text,"Catholic,Orthodox(Eastern, Russian, Greek),Protestant Christian,Other Christian(Latter Day Saints, Jehovah's Witness, etc),Hindu,Jewish,Muslim,Sikh,Buddhist,No Religion(Atheist, Agnostic, etc), Other",,
+Q21_11_TEXT,FALSE,open,text,,,
+Q22,TRUE,choice,number,range,0,8
