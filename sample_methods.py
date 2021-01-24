@@ -60,7 +60,7 @@ def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: fl
             "White": 203 / 472, "Other": 16 / 472, "I prefer not to respond": 19 / 472}
 
     # Missing all data
-    grade = {6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0}
+    grade = {'9': 99, '10': 93, '11': 84, '12': 90}
 
     # empty list to store dfSlices
     dfSlices = []

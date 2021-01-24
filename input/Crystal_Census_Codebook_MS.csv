@@ -1,50 +1,45 @@
-Question ID,OptionsProvided,QuestionType,DataType,Response Options,Minimum (inclusive),Maximum (inclusive)
-Q1_1,TRUE,choice,number,range,0,5
-Q2_1,TRUE,choice,number,range,0,10
-Q3_1,TRUE,choice,number,range,0,10
-Q4_1,TRUE,choice,number,range,0,9
-Q4_2,TRUE,choice,number,range,0,9
-Q4_3,TRUE,choice,number,range,0,9
-Q4_4,TRUE,choice,number,range,0,9
-Q5_1,TRUE,choice,number,range,1,6
-Q5_2,TRUE,choice,number,range,1,6
-Q6_1,TRUE,rank,number,range,1,4
-Q6_2,TRUE,rank,number,range,1,4
-Q6_3,TRUE,rank,number,range,1,4
-Q6_4,TRUE,rank,number,range,1,4
-Q7_1,TRUE,rank,number,range,1,4
-Q7_2,TRUE,rank,number,range,1,4
-Q7_3,TRUE,rank,number,range,1,4
-Q7_4,TRUE,rank,number,range,1,4
-Q8,TRUE,choice,number,range,1,5
-Q9_1,TRUE,rank,number,range,1,5
-Q9_2,TRUE,rank,number,range,1,5
-Q9_3,TRUE,rank,number,range,1,5
-Q9_4,TRUE,rank,number,range,1,5
-Q9_5,TRUE,rank,number,range,1,5
-Q10_1,TRUE,rank,number,range,1,3
-Q10_2,TRUE,rank,number,range,1,3
-Q10_3,TRUE,rank,number,range,1,3
-Q11,TRUE,choice,text,"math, science, history, english, language, arts",,
-Q12,TRUE,choice,number,range,1,5
-Q13_1,TRUE,rank,number,range,1,5
-Q13_2,TRUE,rank,number,range,1,5
-Q13_3,TRUE,rank,number,range,1,5
-Q13_4,TRUE,rank,number,range,1,5
-Q13_5,TRUE,rank,number,range,1,5
-Q14_1,TRUE,rank,number,range,1,5
-Q14_2,TRUE,rank,number,range,1,5
-Q14_3,TRUE,rank,number,range,1,5
-Q14_4,TRUE,rank,number,range,1,5
-Q14_5,TRUE,rank,number,range,1,5
-Q15,FALSE,open,text,,,
-Q16,FALSE,open,text,,,
-Q17,FALSE,open,text,,,
-Q18,TRUE,choice,text,"Male,Female,Non-binary,Other,Prefer not to say",,
-Q18_4_TEXT,FALSE,open,text,,,
-Q19,TRUE,choice,number,range,9,12
-Q20,TRUE,choice,text,"American Indian or Alaskan Native,Middle Eastern,Indian,Other Asian,Black or African American,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,White,Other,I prefer not to respond",,
-Q21,TRUE,choice,text,"Did not finish highschool,High school diploma or G.E.D,Attended college but did not complete degree,Associates degree(A.A., A.S., etc.),Bachelor's degree(B.A., B.A., etc.),Master's degree(M.A., M.S., etc.),Doctoral or professional degree(Ph.D., J.D., M.D., etc.)",,
-Q22,TRUE,choice,text,"Catholic,Orthodox(Eastern, Russian, Greek),Protestant Christian,Other Christian(Latter Day Saints, Jehovah's Witness, etc),Hindu,Jewish,Muslim,Sikh,Buddhist,No Religion(Atheist, Agnostic, etc), Other",,
-Q22_11_TEXT,FALSE,open,text,,,
-Q23,TRUE,choice,number,range,0,8
+Question ID,OptionsProvided,QuestionType,DataType,Response Options,Minimum (inclusive),Maximum (inclusive),
+Q1_1,TRUE,choice,number,range,0,10,
+Q2_1,TRUE,choice,number,range,0,5,
+Q3_1,TRUE,choice,number,range,0,9,
+Q3_2,TRUE,choice,number,range,0,9,
+Q3_3,TRUE,choice,number,range,0,9,
+Q3_4,TRUE,choice,number,range,0,9,
+Q4_1,TRUE,choice,number,range,1,6,
+Q4_2,TRUE,choice,number,range,1,6,
+Q5_1,TRUE,rank,number,range,5,10,
+Q5_2,TRUE,rank,number,range,5,10,
+Q6_1,TRUE,rank,number,range,1,4,
+Q6_2,TRUE,rank,number,range,1,4,
+Q6_3,TRUE,rank,number,range,1,4,
+Q6_4,TRUE,rank,number,range,1,4,
+Q7_1,TRUE,rank,number,range,1,4,
+Q7_2,TRUE,rank,number,range,1,4,
+Q7_3,TRUE,rank,number,range,1,4,
+Q7_4,TRUE,rank,number,range,1,4,
+Q8,TRUE,choice,number,range,1,5,
+Q9_1,TRUE,rank,number,range,1,5,
+Q9_2,TRUE,rank,number,range,1,5,
+Q9_3,TRUE,rank,number,range,1,5,
+Q9_4,TRUE,rank,number,range,1,5,
+Q9_5,TRUE,rank,number,range,1,5,
+Q10,TRUE,choice,text,"math, science, history, english, language, arts",,,
+Q11,TRUE,choice,number,range,1,5,
+Q12_1,TRUE,rank,number,range,1,5,
+Q12_2,TRUE,rank,number,range,1,5,
+Q12_3,TRUE,rank,number,range,1,5,
+Q12_4,TRUE,rank,number,range,1,5,
+Q12_5,TRUE,rank,number,range,1,5,
+Q13_1,TRUE,rank,number,range,1,5,
+Q13_2,TRUE,rank,number,range,1,5,
+Q13_3,TRUE,rank,number,range,1,5,
+Q13_4,TRUE,rank,number,range,1,5,
+Q13_5,TRUE,rank,number,range,1,5,
+Q14,TRUE,choice,text,"Male,Female,Non-binary,Other,Prefer not to say",,,
+Q14_4_TEXT,FALSE,open,text,,,,
+Q15,TRUE,choice,number,range,6,8,"{6:75,7:72,8:71}"
+Q16,TRUE,choice,text,"American Indian or Alaskan Native,Middle Eastern,South Asian, East Asian, Southeast Asian,Black or African American,Hispanic or Latino,Native Hawaiian or Other Pacific Islander,White,Other,I prefer not to respond",,,
+Q17,TRUE,choice,text,"Did not finish highschool,High school diploma or G.E.D,Attended college but did not complete degree,Associates degree(A.A., A.S., etc.),Bachelor's degree(B.A., B.A., etc.),Master's degree(M.A., M.S., etc.),Doctoral or professional degree(Ph.D., J.D., M.D., etc.)",,,
+Q18,TRUE,choice,text,"Catholic,Orthodox(Eastern, Russian, Greek),Protestant Christian,Other Christian(Latter Day Saints, Jehovah's Witness, etc),Hindu,Jewish,Muslim,Sikh,Buddhist, Athiest, Agnostic, Other, prefer not to respond",,,
+Q18_11_TEXT,FALSE,open,text,,,,
+Q19,TRUE,choice,text,"0,1,2,3,4,5,6,7,8+",0,8,

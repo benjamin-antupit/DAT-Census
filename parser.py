@@ -67,7 +67,8 @@ def main(file_name=None, codebook_name=None):
     print("4 - Parse data (Simple Random Sample)")
     print("5 - Parse data (Stratified Sampling by race)")
     print("6 - Parse data (Stratified Sampling by gender)")
-    print("7 - Parse data (Weighted Sampling by highest parental education)")
+    print("7 - Parse data (Stratified Sampling by grade)")
+    print("8 - Parse data (Weighted Sampling by highest parental education)")
     options = input("Type one or more numbers to create selected outputs: ")
 
     if "1" in options or "0" in options:
@@ -95,6 +96,10 @@ def main(file_name=None, codebook_name=None):
             ("6_Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", fraction=0.5), header_labels))
 
     if "7" in options or "0" in options:
+        outputs.append(
+            ("6_Stratified_Grade_Parsed", stratified_sample(data.copy(), "Q23", fraction=0.5), header_labels))
+
+    if "8" in options or "0" in options:
         outputs.append(
             ("7_Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", frac=0.5), header_labels))
 
