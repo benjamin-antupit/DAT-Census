@@ -85,11 +85,11 @@ def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: fl
 
     # if it needs more data points from a bucket than there actually are
     except ValueError:
-        print("Not enough data points.")
-        return df
+        print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
+        return pd.DataFrame()
     except NameError:
-        print("No demographics beyond Q22, Q23, and Q24")
-        return df
+        print("No demographics for " + str(column))
+        return pd.DataFrame()
     # sticks them together, returns
     return pd.concat(slices)
 

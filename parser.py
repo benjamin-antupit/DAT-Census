@@ -26,7 +26,9 @@ def parseData(file_name: str) -> ():
 
 def parseCodebook(codebook_name: str) -> pd.DataFrame:
     codebook = pd.read_csv(codebook_name, header=0)
-    codebook.dropna(how="all", inplace=True)  # Remove empty rows
+    codebook.dropna(inplace=True,
+                    subset=['Question ID', 'OptionsProvided', 'QuestionType'])  # Remove empty rows
+    codebook['OptionsProvided'] = codebook['OptionsProvided'].astype(bool)  # Convert string to bool
     return codebook
 
 
@@ -97,11 +99,11 @@ def main(file_name=None, codebook_name=None):
 
     if "7" in options or "0" in options:
         outputs.append(
-            ("6_Stratified_Grade_Parsed", stratified_sample(data.copy(), "Q23", fraction=0.5), header_labels))
+            ("7_Stratified_Grade_Parsed", stratified_sample(data.copy(), "Q23", fraction=0.5), header_labels))
 
     if "8" in options or "0" in options:
         outputs.append(
-            ("7_Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", frac=0.5), header_labels))
+            ("8_Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", frac=0.5), header_labels))
 
     createAllOutputs(outputs)  # Create output CSVs with proper headers
 

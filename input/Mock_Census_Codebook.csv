@@ -1,55 +1,58 @@
-Question ID,OptionsProvided,QuestionType,DataType,Response Options,Minimum (inclusive),Maximum (inclusive)
-Q1_1,TRUE,rank,number,range,1,4
-Q1_2,TRUE,rank,number,range,1,4
-Q1_3,TRUE,rank,number,range,1,4
-Q1_4,TRUE,rank,number,range,1,4
-Q1_5,TRUE,rank,number,range,1,4
-Q1_5_TEXT,FALSE,open,text,,,
-Q3,TRUE,choice,text,"Always,Often,Sometimes",,
-Q4_1,TRUE,choice,number,range,0,5
-Q5,TRUE,choice,number,range,0,5
-Q6_1,TRUE,rank,number,range,1,4
-Q6_2,TRUE,rank,number,range,1,4
-Q6_3,TRUE,rank,number,range,1,4
-Q6_4,TRUE,rank,number,range,1,4
-Q9_1,TRUE,choice,number,range,0,10
-Q9_2,TRUE,choice,number,range,0,10
-Q9_3,TRUE,choice,number,range,0,10
-Q9_4,TRUE,choice,number,range,0,10
-Q10_1,TRUE,choice,number,range,0,10
-Q12_1,TRUE,rank,number,range,1,7
-Q12_2,TRUE,rank,number,range,1,7
-Q12_3,TRUE,rank,number,range,1,7
-Q12_4,TRUE,rank,number,range,1,7
-Q12_5,TRUE,rank,number,range,1,7
-Q12_6,TRUE,rank,number,range,1,7
-Q12_7,TRUE,rank,number,range,1,7
-Q13_1,FALSE,open,number,,,
-Q13_2,FALSE,open,number,,,
-Q14_1,TRUE,rank,number,range,1,4
-Q14_2,TRUE,rank,number,range,1,4
-Q14_3,TRUE,rank,number,range,1,4
-Q14_4,TRUE,rank,number,range,1,4
-Q15_1,TRUE,rank,number,range,1,4
-Q15_2,TRUE,rank,number,range,1,4
-Q15_3,TRUE,rank,number,range,1,4
-Q15_4,TRUE,rank,number,range,1,4
-Q16,FALSE,open,text,,,
-Q17,TRUE,choice,text,"Strongly agree,Somewhat agree,Neither agree nor disagree,Somewhat disagree,Strongly disagree",,
-Q18,TRUE,rank,number,range,1,7
-Q19_1,TRUE,rank,number,range,1,7
-Q19_2,TRUE,rank,number,range,1,7
-Q19_3,TRUE,rank,number,range,1,7
-Q19_4,TRUE,rank,number,range,1,7
-Q19_5,TRUE,rank,number,range,1,7
-Q19_6,TRUE,rank,number,range,1,7
-Q19_7,TRUE,rank,number,range,1,7
-Q21,TRUE,multiple_choice,text,"History,English,Language,Math,Science,CADS,Arts",,
-Q22,TRUE,choice,text,"Female,Male,Prefer not to say",,
-Q22_4_TEXT,FALSE,open,text,,,
-Q23,TRUE,choice,number,range,6,12
-Q24,TRUE,multiple_choice,text,,,
-Q25,TRUE,choice,text,,,
-Q26,TRUE,choice,text,,,
-Q26_11_TEXT,FALSE,open,text,,,
-Q27,TRUE,choice,number,range,0,7
+Row 0,Row 1,Question ID,OptionsProvided,QuestionType,DataType,Response Options,Minimum (inclusive),Maximum (inclusive)
+Q1_1,What type of Crystal events should the administration focus on improving? - Arts,Q1_1,TRUE,rank,number,range,1,4
+Q1_2,What type of Crystal events should the administration focus on improving? - Culture/Holidays,Q1_2,TRUE,rank,number,range,1,4
+Q1_3,What type of Crystal events should the administration focus on improving? - Sports,Q1_3,TRUE,rank,number,range,1,4
+Q1_4,What type of Crystal events should the administration focus on improving? - Dances,Q1_4,TRUE,rank,number,range,1,4
+Q1_5,What type of Crystal events should the administration focus on improving? - Other,Q1_5,TRUE,rank,number,range,1,4
+Q1_5_TEXT,What type of Crystal events should the administration focus on improving? - Other - Text,Q1_5_TEXT,FALSE,open,text,,,
+Q3,How often do you attend Crystal events?,Q3,TRUE,choice,text,"Always,Often,Sometimes",,
+Q4_1,"During spirit weeks, how many days do you typically participate? - Days participated",Q4_1,TRUE,choice,number,range,0,5
+Q5,How often do you attend spirit events per month?,Q5,TRUE,choice,number,range,0,5
+Q6_1,What type of Crystal activities do you find most engaging? - Club-Period Clubs,Q6_1,TRUE,rank,number,range,1,4
+Q6_2,What type of Crystal activities do you find most engaging? - Afterschool Clubs,Q6_2,TRUE,rank,number,range,1,4
+Q6_3,What type of Crystal activities do you find most engaging? - Sports,Q6_3,TRUE,rank,number,range,1,4
+Q6_4,What type of Crystal activities do you find most engaging? - Theater,Q6_4,TRUE,rank,number,range,1,4
+Q9_1,How many hours per week do you spend... - Participating in non-Crystal extracurriculars?,Q9_1,TRUE,choice,number,range,0,10
+Q9_2,How many hours per week do you spend... - Participating in Crystal extracurriculars?,Q9_2,TRUE,choice,number,range,0,10
+Q9_3,How many hours per week do you spend... - On homework on weekdays?,Q9_3,TRUE,choice,number,range,0,10
+Q9_4,How many hours per week do you spend... - On homework on weekends?,Q9_4,TRUE,choice,number,range,0,10
+Q10_1,What does your free-time vs. obligations time balance look like?,Q10_1,TRUE,choice,number,range,0,10
+Q12_1,What subject assigns the most homework? - Math,Q12_1,TRUE,rank,number,range,1,7
+Q12_2,What subject assigns the most homework? - Science,Q12_2,TRUE,rank,number,range,1,7
+Q12_3,What subject assigns the most homework? - History,Q12_3,TRUE,rank,number,range,1,7
+Q12_4,What subject assigns the most homework? - English,Q12_4,TRUE,rank,number,range,1,7
+Q12_5,What subject assigns the most homework? - Language,Q12_5,TRUE,rank,number,range,1,7
+Q12_6,What subject assigns the most homework? - Art,Q12_6,TRUE,rank,number,range,1,7
+Q12_7,What subject assigns the most homework? - CADS,Q12_7,TRUE,rank,number,range,1,7
+Q13_1,How many hours do you sleep every day... - On the weekend,Q13_1,FALSE,open,number,,,
+Q13_2,How many hours do you sleep every day... - During the week,Q13_2,FALSE,open,number,,,
+Q14_1,Which Crystal programs cause you to get more sleep than usual? - No HW Weekends,Q14_1,TRUE,rank,number,range,1,4
+Q14_2,Which Crystal programs cause you to get more sleep than usual? - Late Starts,Q14_2,TRUE,rank,number,range,1,4
+Q14_3,Which Crystal programs cause you to get more sleep than usual? - Three Major Assessment Limit Per Day,Q14_3,TRUE,rank,number,range,1,4
+Q14_4,Which Crystal programs cause you to get more sleep than usual? - Time Limits on HW Length,Q14_4,TRUE,rank,number,range,1,4
+Q15_1,What causes you to lose sleep? - Multiple Assessments,Q15_1,TRUE,rank,number,range,1,4
+Q15_2,What causes you to lose sleep? - Too Much Homework,Q15_2,TRUE,rank,number,range,1,4
+Q15_3,What causes you to lose sleep? - Sports Games,Q15_3,TRUE,rank,number,range,1,4
+Q15_4,What causes you to lose sleep? - Theater Productions,Q15_4,TRUE,rank,number,range,1,4
+Q16,What is your planned major?,Q16,FALSE,open,text,,,
+Q17,Crystal has enough extracurricular activities related to your academic interests/ambitions.,Q17,TRUE,choice,text,"Strongly agree,Somewhat agree,Neither agree nor disagree,Somewhat disagree,Strongly disagree",,
+Q18,Are there any elective courses you would like Crystal to offer in the future? (Ex: Astronomy),Q18,TRUE,rank,number,range,1,7
+Q19_1,For what department does Crystal need more elective courses? - Math,Q19_1,TRUE,rank,number,range,1,7
+Q19_2,For what department does Crystal need more elective courses? - Science,Q19_2,TRUE,rank,number,range,1,7
+Q19_3,For what department does Crystal need more elective courses? - History,Q19_3,TRUE,rank,number,range,1,7
+Q19_4,For what department does Crystal need more elective courses? - English,Q19_4,TRUE,rank,number,range,1,7
+Q19_5,For what department does Crystal need more elective courses? - Language,Q19_5,TRUE,rank,number,range,1,7
+Q19_6,For what department does Crystal need more elective courses? - Arts,Q19_6,TRUE,rank,number,range,1,7
+Q19_7,For what department does Crystal need more elective courses? - CADS,Q19_7,TRUE,rank,number,range,1,7
+Q21,Which departments would you most like to collaborate if interdisciplinary electives were to be added? (Select 2-3),Q21,TRUE,multiple_choice,text,"History,English,Language,Math,Science,CADS,Arts",,
+Q22,What is your gender identity? - Selected Choice,Q22,TRUE,choice,text,"Female,Male,Prefer not to say",,
+Q22_4_TEXT,What is your gender identity? - Other - Text,Q22_4_TEXT,FALSE,open,text,,,
+Q23,What is your grade level?,Q23,TRUE,choice,number,range,9,12
+Q24,What is your racial or ethnic identification? (select all that apply),Q24,TRUE,multiple_choice,text,,,
+Q25,What is the highest level of education completed by either of your parents or guardians?,Q25,TRUE,choice,text,,,
+Q26,With what religious affiliation do you most closely identify? - Selected Choice,Q26,TRUE,choice,text,,,
+Q26_11_TEXT,With what religious affiliation do you most closely identify? - Other - Text,Q26_11_TEXT,FALSE,open,text,,,
+Q27,How many people do you live with?,Q27,TRUE,choice,number,range,0,7
+Q16 - Parent Topics,Q16 - Parent Topics,"Q16 - Parent Topics
+",,,,,,
+Q16 - Topics,Q16 - Topics,Q16 - Topics,,,,,,
