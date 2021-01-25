@@ -1,0 +1,15 @@
+StartDate,EndDate,Duration (in seconds),ResponseId,Q1_5_TEXT,Q13_1,Q13_2,Q16,Q22_4_TEXT,Q26_11_TEXT
+Start Date,End Date,Duration (in seconds),Response ID,What type of Crystal events should the administration focus on improving? - Other - Text,How many hours do you sleep every day... - On the weekend,How many hours do you sleep every day... - During the week,What is your planned major?,What is your gender identity? - Other - Text,With what religious affiliation do you most closely identify? - Other - Text
+1/13/2021 10:37:46,1/13/2021 10:39:45,118,R_0c71V8f62Vfihe9,yes,8,2,S-Science,,
+1/13/2021 10:43:19,1/13/2021 10:45:06,107,R_3q7qouXqooL8ciw,lLll,13,4,H-Humanities,,
+1/13/2021 10:54:11,1/13/2021 10:54:53,42,R_1hM9f8qRiXeHppl,,7,4,afds,,
+1/13/2021 11:47:59,1/13/2021 11:52:45,286,R_2R96BZq1iFKOSdd,,8,10,Psychology ,,
+1/13/2021 11:48:23,1/13/2021 11:53:46,322,R_2qgfSv1uJs7zFfU,Gatherings ,7,11,S-engineering ,,
+1/13/2021 11:53:08,1/13/2021 12:01:21,492,R_2WMrWJXjbYyFtr8,,10,8,I don't fucking know,,
+1/13/2021 11:58:36,1/13/2021 12:02:02,205,R_cBj4iTusuRtPPzj,,8,10,Electrical Engineering,,
+1/13/2021 12:01:43,1/13/2021 12:05:06,202,R_2rHhVzkbzBcx7VL,,7,7,math,,
+1/13/2021 13:11:00,1/13/2021 13:24:06,786,R_pMZ0PwqjzEnERG1,,8,7,,,
+1/13/2021 14:41:24,1/13/2021 15:14:41,1997,R_bKJDWGJaKtWE7cJ,,8,7,Biochemistry,,
+1/13/2021 15:31:51,1/13/2021 15:35:42,230,R_2P7N8lOXqbAERPP,,11,10,Finance,,
+1/13/2021 16:54:42,1/13/2021 16:59:49,307,R_3LjoTOGyhLfrwVH,,11,8,econ ,,
+1/13/2021 17:09:06,1/13/2021 17:21:10,723,R_Q5HYCAKxEDPgCat,,11,8,Engineering,,

@@ -31,7 +31,8 @@ def random_sample(df, sample_size: int = None, fraction: float = None, column: s
             return df
 
 
-def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: float = None) -> pd.DataFrame:
+def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
+                      n: int = None, fraction: float = None) -> pd.DataFrame:
     # transforming fraction to number of data points if necessary
     if not n:
         n = round(fraction * len(df))
@@ -40,8 +41,8 @@ def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: fl
     Temporary solution until more data on mixed is received as we have no data on each "bucket" of multiracial
     Easier to just bucket them together in the meantime until further data is received
     '''
-    if column == "Q24":
-        df.loc[df['Q24'].str.contains(','), 'Q24'] = 'Multiracial'
+    if column == "Q19":
+        df.loc[df['Q19'].str.contains(','), 'Q19'] = 'Multiracial'
 
     '''
     All Data
@@ -71,12 +72,8 @@ def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: fl
             dfSlices.append(df_region)
 
     # determines where to search for the percentages for each bucket
-    if column == "Q22":
-        size = gender
-    elif column == "Q23":
-        size = grade
-    elif column == "Q24":
-        size = race
+    print(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])
+    size = dict(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])
 
     # creates list of the buckets
     try:
@@ -84,6 +81,9 @@ def stratified_sample(df: pd.DataFrame, column: str, n: int = None, fraction: fl
                   dfSlices]
 
     # if it needs more data points from a bucket than there actually are
+    except KeyError as e:
+        print("Key(s) " + str(e.args) + " not found in demographics.")
+        return pd.DataFrame()
     except ValueError:
         print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
         return pd.DataFrame()

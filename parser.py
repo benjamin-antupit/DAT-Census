@@ -4,20 +4,21 @@ import os
 from sample_methods import random_sample, stratified_sample, weighted_sample
 
 
-def createAllOutputs(data_frame_list: list):
+def createAllOutputs(data_frame_list: list, output_dir):
     for title, df, header_labels in data_frame_list:
         if not df.empty:
             df.columns = [df.columns, list(header_labels)]  # Add questions as secondary headers
             df.dropna(how="all", inplace=True)  # Remove empty rows
-            if not os.path.isdir('./output'):  # Create output directory if none exists
-                os.mkdir('./output')
-            df.to_csv("output/" + title + ".csv", index=False)  # Create CSVs
+            if not os.path.isdir('./'+output_dir):  # Create output directory if none exists
+                os.mkdir('./'+output_dir)
+            df.to_csv(output_dir + "/" + title + ".csv", index=False)  # Create CSVs
 
 
 def parseData(file_name: str) -> ():
     data = pd.read_csv(file_name, header=0)  # Read CSV, create headers from first row
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage', "Finished",
-                       "Q16 - Parent Topics", "Q16 - Topics"], axis=1, inplace=True)  # Remove redundant columns
+                       "Q16 - Parent Topics", "Q16 - Topics"],
+              axis=1, inplace=True, errors='ignore')  # Remove redundant columns
     header_labels = data.iloc[0]  # Save question names for later
     data.drop(index=0, inplace=True)  # Remove question names to avoid sampling errors
     data.fillna("", inplace=True)  # Fill all null values with empty string
@@ -48,8 +49,15 @@ def getFreeTextResponse(df: pd.DataFrame, headers, codebook: pd.DataFrame):
     return df, headers
 
 
-def main(file_name=None, codebook_name=None):
+def main(config, file_name=None, codebook_name=None, output_dir="output"):
     print("\nDAT Census Parsing & Sampling\n")
+
+    if "US" in config:
+        config = {'race_col': 'Q19', 'gender_col': 'Q17','grade_col': 'Q18', 'parent_edu_col': 'Q20'}
+    elif "MS" in config:
+        config = {'race_col': 'Q20', 'gender_col': 'Q18','grade_col': 'Q19', 'parent_edu_col': 'Q21'}
+    elif "mock" in config:
+        config = {'race_col': 'Q24', 'gender_col': 'Q22','grade_col': 'Q23', 'parent_edu_col': 'Q25'}
 
     if not file_name:
         file_name = input("Please input name of results CSV: ")
@@ -91,21 +99,29 @@ def main(file_name=None, codebook_name=None):
 
     if "5" in options or "0" in options:
         outputs.append(
-            ("5_Stratified_Race_Parsed", stratified_sample(data.copy(), "Q24", fraction=0.25), header_labels))
+            ("5_Stratified_Race_Parsed",
+             stratified_sample(data.copy(), config['race_col'], codebook, fraction=0.25), header_labels))
 
     if "6" in options or "0" in options:
         outputs.append(
-            ("6_Stratified_Gender_Parsed", stratified_sample(data.copy(), "Q22", fraction=0.5), header_labels))
+            ("6_Stratified_Gender_Parsed",
+             stratified_sample(data.copy(), config['gender_col'], codebook, fraction=0.5), header_labels))
 
     if "7" in options or "0" in options:
         outputs.append(
-            ("7_Stratified_Grade_Parsed", stratified_sample(data.copy(), "Q23", fraction=0.5), header_labels))
+            ("7_Stratified_Grade_Parsed",
+             stratified_sample(data.copy(), config['grade_col'], codebook, fraction=0.5), header_labels))
 
     if "8" in options or "0" in options:
         outputs.append(
-            ("8_Weighted_Education_Parsed", weighted_sample(data.copy(), "Q25", frac=0.5), header_labels))
+            ("8_Weighted_Education_Parsed",
+             weighted_sample(data.copy(), config['parent_edu_col'], frac=0.5), header_labels))
 
-    createAllOutputs(outputs)  # Create output CSVs with proper headers
+    createAllOutputs(outputs, output_dir)  # Create output CSVs with proper headers
 
 
-main("input/Mock_Census_Data.csv", "input/Mock_Census_Codebook.csv")
+main("US", "input/Crystal Census Final - US - Preliminary Analysis_January 24, 2021_18.27 - Sheet1.csv",
+     "input/Crystal_Census_Codebook_US.csv", "prelim_output_us")
+
+main("MS", "input/Crystal Census Final - MS - Preliminary Analysis_January 24, 2021_18.30 - Sheet1.csv",
+     "input/Crystal_Census_Codebook_MS.csv", "prelim_output_ms")
