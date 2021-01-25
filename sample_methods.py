@@ -73,6 +73,7 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
 
     # determines where to search for the percentages for each bucket
     size = eval(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])  # TODO: remove eval
+    # Todo: Try json.loads(...)?
 
     # creates list of the buckets
     try:
