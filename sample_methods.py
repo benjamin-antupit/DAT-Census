@@ -43,6 +43,8 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
     '''
     if column == "Q19":
         df.loc[df['Q19'].str.contains(','), 'Q19'] = 'Multiracial'
+        df.loc[df['Q19'].str.contains('Indian'), 'Q19'] = 'Other Asian'
+        df.loc[df['Q19'].str.contains('Southeast Asian'), 'Q19'] = 'Multiracial'
 
     '''
     All Data
@@ -61,7 +63,7 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
             "White": 203 / 472, "Other": 16 / 472, "I prefer not to respond": 19 / 472}
 
     # Missing all data
-    grade = {'9': 99, '10': 93, '11': 84, '12': 90}
+    grade = {'9': 99/366, '10': 93/366, '11': 84/366, '12': 90/366}
 
     # empty list to store dfSlices
     dfSlices = []
@@ -76,20 +78,21 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
     # Todo: Try json.loads(...)?
 
     # creates list of the buckets
-    try:
+    # try:
+    if True:
         slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in
                   dfSlices]
 
     # if it needs more data points from a bucket than there actually are
-    except KeyError as e:
-        print("Key(s) " + str(e.args) + " not found in demographics.")
-        return pd.DataFrame()
-    except ValueError:
-        print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
-        return pd.DataFrame()
-    except NameError:
-        print("No demographics for " + str(column))
-        return pd.DataFrame()
+    # except KeyError as e:
+    #     print("Key(s) " + str(e.args) + " not found in demographics.")
+    #     return pd.DataFrame()
+    # except ValueError:
+    #     print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
+    #     return pd.DataFrame()
+    # except NameError:
+    #     print("No demographics for " + str(column))
+    #     return pd.DataFrame()
     # sticks them together, returns
     return pd.concat(slices)
 
