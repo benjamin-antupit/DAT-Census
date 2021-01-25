@@ -78,22 +78,21 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
     # Todo: Try json.loads(...)?
 
     # creates list of the buckets
-    # try:
-    if True:
+    try:
         slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in
                   dfSlices]
 
-    # if it needs more data points from a bucket than there actually are
-    # except KeyError as e:
-    #     print("Key(s) " + str(e.args) + " not found in demographics.")
-    #     return pd.DataFrame()
-    # except ValueError:
-    #     print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
-    #     return pd.DataFrame()
-    # except NameError:
-    #     print("No demographics for " + str(column))
-    #     return pd.DataFrame()
-    # sticks them together, returns
+    #if it needs more data points from a bucket than there actually are
+    except KeyError as e:
+        print("Key(s) " + str(e.args) + " not found in demographics.")
+        return pd.DataFrame()
+    except ValueError:
+        print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
+        return pd.DataFrame()
+    except NameError:
+        print("No demographics for " + str(column))
+        return pd.DataFrame()
+    #sticks them together, returns
     return pd.concat(slices)
 
 
