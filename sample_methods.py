@@ -72,8 +72,7 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
             dfSlices.append(df_region)
 
     # determines where to search for the percentages for each bucket
-    print(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])
-    size = dict(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])
+    size = eval(codebook['Distribution'].loc[codebook['Question ID'] == column].to_list()[0])  # TODO: remove eval
 
     # creates list of the buckets
     try:
