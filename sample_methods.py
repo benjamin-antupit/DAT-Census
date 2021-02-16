@@ -1,41 +1,40 @@
 import pandas as pd
-import math
 
 
-def random_sample(df, sample_size: int = None, fraction: float = None, column: str = None) -> pd.DataFrame:
+def random_sample(df, n: int = None, percent: float = None, column: str = None) -> pd.DataFrame:
     # Decision tree- parameters sample_size, fraction, and column are optional
     if column is None:
         # Will return entire row if user doesn't want a particular column
-        if fraction is None:
+        if percent is None:
             # Case 1: No fractional sample size parameter
-            if sample_size is None:
+            if n is None:
                 return df.sample()  # Default- returns a random row
             else:  # Numeric sample size has been provided
-                return df.sample(n=sample_size)
-        elif sample_size is None:
+                return df.sample(n=n)
+        elif n is None:
             # Case 2: No sample size provided
             return df.sample(
-                frac=fraction)  # No additional case bc we already know fraction has been provided due to the elif
+                frac=percent)  # No additional case bc we already know fraction has been provided due to the elif
         else:
             return df  # all other cases
     else:
         # Replicated decision tree under here for case where column is provided
-        if fraction is None:
-            if sample_size is None:
+        if percent is None:
+            if n is None:
                 return df[column].sample()  # All sample outputs here only provide samples of the user-specified column
             else:
-                return df[column].sample(n=sample_size)
-        elif sample_size is None:
-            return df[column].sample(frac=fraction)
+                return df[column].sample(n=n)
+        elif n is None:
+            return df[column].sample(frac=percent)
         else:
             return df
 
 
 def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
-                      n: int = None, fraction: float = None) -> pd.DataFrame:
+                      n: int = None, percent: float = None) -> pd.DataFrame:
     # transforming fraction to number of data points if necessary
     if not n:
-        n = round(fraction * len(df))
+        n = round(percent * len(df))
 
     '''
     Temporary solution until more data on mixed is received as we have no data on each "bucket" of multiracial
@@ -79,7 +78,7 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
 
     # creates list of the buckets
     try:
-        slices = [random_sample(dfSlice[1], sample_size=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in
+        slices = [random_sample(dfSlice[1], n=round(n * size[dfSlice[1][column].iloc[0]])) for dfSlice in
                   dfSlices]
 
     #if it needs more data points from a bucket than there actually are
@@ -97,11 +96,12 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
 
 
 def weighted_sample(df: pd.DataFrame, column: str, n: int = None,
-                    frac: float = None, weights: dict = None) -> pd.DataFrame:
-    if not n and not frac:
+                    percent: float = None, weights: dict = None) -> pd.DataFrame:
+    if not n and not percent:
         return pd.DataFrame()
+    # transforming fraction to number of data points if necessary
     if not n:
-        n = math.floor(len(df.index) * frac)
+        n = round(percent * len(df))
 
     if not weights:
         # weight each distinct value in column equally

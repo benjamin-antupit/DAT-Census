@@ -74,12 +74,19 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     print("1 - Parsed data (All question types)")
     print("2 - Parsed data (multiple choice only)")
     print("3 - Parsed data (free response only)")
-    print("4 - Parse data (Simple Random Sample)")
-    print("5 - Parse data (Stratified Sampling by race)")
-    print("6 - Parse data (Stratified Sampling by gender)")
-    print("7 - Parse data (Stratified Sampling by grade)")
-    print("8 - Parse data (Weighted Sampling by highest parental education)")
+    print("4 - Parse & sample data (Simple Random Sample)")
+    print("5 - Parse & sample data (Stratified Sampling by race)")
+    print("6 - Parse & sample data (Stratified Sampling by gender)")
+    print("7 - Parse & sample data (Stratified Sampling by grade)")
+    print("8 - Parse & sample data (Weighted Sampling by highest parental education)")
     options = input("Type one or more numbers to create selected outputs: ")
+
+    if any(item in list(options) for item in ["0","4","5","6","7","8"]):
+        n = input("How many responses should be returned (use __% to return percent of total responses): ")
+        if "%" in n:
+            n = round(float(n.strip("%")) / 100 * len(data.index))
+        else:
+            n = int(n)
 
     if "1" in options or "0" in options:
         outputs.append(
@@ -95,27 +102,27 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
 
     if "4" in options or "0" in options:
         outputs.append(
-            ("4_Simple_Random_Sample_Parsed", random_sample(data.copy(), None, 0.5), header_labels))
+            ("4_Simple_Random_Sample_Parsed", random_sample(data.copy(), n=n), header_labels))
 
     if "5" in options or "0" in options:
         outputs.append(
             ("5_Stratified_Race_Parsed",
-             stratified_sample(data.copy(), config['race_col'], codebook, fraction=0.25), header_labels))
+             stratified_sample(data.copy(), config['race_col'], codebook, n=n), header_labels))
 
     if "6" in options or "0" in options:
         outputs.append(
             ("6_Stratified_Gender_Parsed",
-             stratified_sample(data.copy(), config['gender_col'], codebook, fraction=0.5), header_labels))
+             stratified_sample(data.copy(), config['gender_col'], codebook, n=n), header_labels))
 
     if "7" in options or "0" in options:
         outputs.append(
             ("7_Stratified_Grade_Parsed",
-             stratified_sample(data.copy(), config['grade_col'], codebook, fraction=0.5), header_labels))
+             stratified_sample(data.copy(), config['grade_col'], codebook, n=n), header_labels))
 
     if "8" in options or "0" in options:
         outputs.append(
             ("8_Weighted_Education_Parsed",
-             weighted_sample(data.copy(), config['parent_edu_col'], frac=0.5), header_labels))
+             weighted_sample(data.copy(), config['parent_edu_col'], n=n), header_labels))
 
     createAllOutputs(outputs, output_dir)  # Create output CSVs with proper headers
 
