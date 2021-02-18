@@ -87,6 +87,8 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
             n = round(float(n.strip("%")) / 100 * len(data.index))
         else:
             n = int(n)
+        if n > len(data.index):
+            n = len(data.index)
 
     if "1" in options or "0" in options:
         outputs.append(
