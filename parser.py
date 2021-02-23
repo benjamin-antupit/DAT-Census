@@ -53,8 +53,12 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     print("\nDAT Census Parsing & Sampling\n")
 
     if "US" in config:
-        config = {'race_col': 'Q19', 'gender_col': 'Q17','grade_col': 'Q18', 'parent_edu_col': 'Q20'}
+        config = {'race_col': 'Q23', 'gender_col': 'Q20','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
     elif "MS" in config:
+        config = {'race_col': 'Q23', 'gender_col': 'Q20_1','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
+    elif "preliminary_US" in config:
+        config = {'race_col': 'Q19', 'gender_col': 'Q17','grade_col': 'Q18', 'parent_edu_col': 'Q20'}
+    elif "preliminary_MS" in config:
         config = {'race_col': 'Q20', 'gender_col': 'Q18','grade_col': 'Q19', 'parent_edu_col': 'Q21'}
     elif "mock" in config:
         config = {'race_col': 'Q24', 'gender_col': 'Q22','grade_col': 'Q23', 'parent_edu_col': 'Q25'}
@@ -127,8 +131,8 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     createAllOutputs(outputs, output_dir)  # Create output CSVs with proper headers
 
 
-main("US", "input/Crystal Census Final - US - Preliminary Analysis_January 24, 2021_18.27 - Sheet1.csv",
-     "input/Crystal_Census_Codebook_US.csv", "prelim_output_us")
+main("US", "input/Crystal Census Final US.csv",
+     "input/Crystal_Census_Codebook_US.csv", "final_output_us")
 
-main("MS", "input/Crystal Census Final - MS - Preliminary Analysis_January 24, 2021_18.30 - Sheet1.csv",
-     "input/Crystal_Census_Codebook_MS.csv", "prelim_output_ms")
+main("MS", "input/Crystal Census Final MS.csv",
+     "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
