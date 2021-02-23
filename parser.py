@@ -133,8 +133,8 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     createAllOutputs(outputs, output_dir)  # Create output CSVs with proper headers
 
 
-main("US", "input/Crystal Census Final US.csv",
+main("US", "input/CrystalCensusFinalUS_February 23, 2021_11.51.csv",
      "input/Crystal_Census_Codebook_US.csv", "final_output_us")
 
-main("MS", "input/Crystal Census Final MS.csv",
+main("MS", "input/CrystalCensusFinalMS_February 23, 2021_11.50",
      "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
