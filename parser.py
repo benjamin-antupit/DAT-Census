@@ -55,7 +55,7 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     if "US" in config:
         config = {'race_col': 'Q23', 'gender_col': 'Q20','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
     elif "MS" in config:
-        config = {'race_col': 'Q23', 'gender_col': 'Q20_1','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
+        config = {'race_col': 'Q23', 'gender_col': 'Q20','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
     elif "preliminary_US" in config:
         config = {'race_col': 'Q19', 'gender_col': 'Q17','grade_col': 'Q18', 'parent_edu_col': 'Q20'}
     elif "preliminary_MS" in config:
@@ -135,6 +135,7 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
 
 # main("US", "input/CrystalCensusFinalUS_February 23, 2021_11.51.csv",
 #      "input/Crystal_Census_Codebook_US.csv", "final_output_us")
+
 
 main("MS", "input/CrystalCensusFinalMS_February 23, 2021_11.50.csv",
      "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
