@@ -53,15 +53,17 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     print("\nDAT Census Parsing & Sampling\n")
 
     if "US" in config:
-        config = {'race_col': 'Q23', 'gender_col': 'Q20','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
+        config = {'race_col': 'Q23', 'gender_col': 'Q20', 'grade_col': 'Q19', 'parent_edu_col': 'Q25'}
     elif "MS" in config:
-        config = {'race_col': 'Q23', 'gender_col': 'Q20','grade_col': 'Q19', 'parent_edu_col': 'Q25'}
+        config = {'race_col': 'Q23', 'gender_col': 'Q20', 'grade_col': 'Q19', 'parent_edu_col': 'Q25'}
+    elif "combined" in config:
+        config = {'race_col': 'Q23', 'gender_col': 'Q20', 'grade_col': 'Q19', 'parent_edu_col': 'Q25'}
     elif "preliminary_US" in config:
-        config = {'race_col': 'Q19', 'gender_col': 'Q17','grade_col': 'Q18', 'parent_edu_col': 'Q20'}
+        config = {'race_col': 'Q19', 'gender_col': 'Q17', 'grade_col': 'Q18', 'parent_edu_col': 'Q20'}
     elif "preliminary_MS" in config:
-        config = {'race_col': 'Q20', 'gender_col': 'Q18','grade_col': 'Q19', 'parent_edu_col': 'Q21'}
+        config = {'race_col': 'Q20', 'gender_col': 'Q18', 'grade_col': 'Q19', 'parent_edu_col': 'Q21'}
     elif "mock" in config:
-        config = {'race_col': 'Q24', 'gender_col': 'Q22','grade_col': 'Q23', 'parent_edu_col': 'Q25'}
+        config = {'race_col': 'Q24', 'gender_col': 'Q22', 'grade_col': 'Q23', 'parent_edu_col': 'Q25'}
 
     if not file_name:
         file_name = input("Please input name of results CSV: ")
@@ -137,5 +139,8 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
 #      "input/Crystal_Census_Codebook_US.csv", "final_output_us")
 
 
-main("MS", "input/CrystalCensusFinalMS_February 23, 2021_11.50.csv",
-     "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
+# main("MS", "input/CrystalCensusFinalMS_February 23, 2021_11.50.csv",
+#     "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
+
+main("combined", "input/CrystalCensusFinalMSUS.csv",
+     "input/Crystal_Census_Codebook_Combined.csv", "final_output_combined")

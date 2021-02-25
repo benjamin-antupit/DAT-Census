@@ -85,7 +85,7 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
     except KeyError as e:
         print("Key(s) " + str(e.args) + " not found in demographics.")
         return pd.DataFrame()
-    except ValueError:
+    except ValueError as e:
         print("Not enough data points in column " + str(column) + " to perform stratified sampling.")
         return pd.DataFrame()
     except NameError:
