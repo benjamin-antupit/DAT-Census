@@ -19,7 +19,7 @@ def parseData(file_name: str) -> ():
     data.drop(columns=['Status', 'Progress', 'RecordedDate', 'DistributionChannel', 'UserLanguage', "Finished",
                        "Q16 - Parent Topics", "Q16 - Topics"],
               axis=1, inplace=True, errors='ignore')  # Remove redundant columns
-    header_labels = data.iloc[0]  # Save question names for later
+    header_labels: pd.Series = data.iloc[0]  # Save question names for later
     data.drop(index=0, inplace=True)  # Remove question names to avoid sampling errors
     data.fillna("", inplace=True)  # Fill all null values with empty string
     return data, header_labels
@@ -135,6 +135,34 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
     createAllOutputs(outputs, output_dir)  # Create output CSVs with proper headers
 
 
+def createRandomSamples(samples_per_set=40, total_sets=100):
+    file_name = "input/CrystalCensusFinalMSUS.csv"
+    codebook_name = "input/Crystal_Census_Codebook_Combined.csv"
+    output_dir = "random_sample_output"
+    data, header_labels = parseData(file_name)
+    header_labels = pd.concat([pd.Series(data=["simulation_index"], index=["simulation_index"]), header_labels])
+    codebook = parseCodebook(codebook_name)
+    print(header_labels)
+    output = []
+    for i in range(1, total_sets+1):
+        current_sample = random_sample(data.copy(), n=samples_per_set)
+        current_sample.insert(0, "simulation_index", [i] * len(current_sample.index))
+        output.append(current_sample.copy(deep=True))
+        makeCustomOutput(current_sample, header_labels, output_dir, "random_sample_" + str(i))
+    full_output = pd.concat(output, ignore_index=True)
+    makeCustomOutput(full_output, header_labels, output_dir, "compiled_random_samples")
+
+
+def makeCustomOutput(df: pd.DataFrame, header_labels, output_dir, title):
+    df.columns = [df.columns, list(header_labels)]  # Add questions as secondary headers
+    df.dropna(how="all", inplace=True)  # Remove empty rows
+    if not os.path.isdir('./' + output_dir):  # Create output directory if none exists
+        os.mkdir('./' + output_dir)
+    df.to_csv(output_dir + "/" + title + ".csv", index=False)  # Create CSVs
+
+
+
+
 # main("US", "input/CrystalCensusFinalUS_February 23, 2021_11.51.csv",
 #      "input/Crystal_Census_Codebook_US.csv", "final_output_us")
 
@@ -142,5 +170,7 @@ def main(config, file_name=None, codebook_name=None, output_dir="output"):
 # main("MS", "input/CrystalCensusFinalMS_February 23, 2021_11.50.csv",
 #     "input/Crystal_Census_Codebook_MS.csv", "final_output_ms")
 
-main("combined", "input/CrystalCensusFinalMSUS.csv",
-     "input/Crystal_Census_Codebook_Combined.csv", "final_output_combined")
+# main("combined", "input/CrystalCensusFinalMSUS.csv",
+#     "input/Crystal_Census_Codebook_Combined.csv", "final_output_combined")
+
+createRandomSamples()
