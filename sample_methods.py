@@ -40,29 +40,8 @@ def stratified_sample(df: pd.DataFrame, column: str, codebook: pd.DataFrame,
     Temporary solution until more data on mixed is received as we have no data on each "bucket" of multiracial
     Easier to just bucket them together in the meantime until further data is received
     '''
-    if column == "Q19":
-        df.loc[df['Q19'].str.contains(','), 'Q19'] = 'Multiracial'
-        df.loc[df['Q19'].str.contains('Indian'), 'Q19'] = 'Other Asian'
-        df.loc[df['Q19'].str.contains('Southeast Asian'), 'Q19'] = 'Multiracial'
-
-    '''
-    All Data
-    At some point, this would be great as an import, however the file is not computer-readable so hardcode is faster
-    Non-Binary -- No Data
-    Prefer not to say -- No data
-    '''
-    gender = {"Female": 243 / 472, "Male": 212 / 472, "Other": 17 / 472, "Prefer not to say": 0, "Non-binary": 0}
-    '''
-    #East Asian was old wording, was updated to Other Asian. Remove East Asian once we get full dataset
-    #Indian -- No data
-    '''
-    race = {"American Indian or Alaskan Native": 4 / 472, "Indian": 0 / 472, "East Asian": 231 / 472,
-            "Other Asian": 231 / 472, "Black or African American": 20 / 472, "Hispanic or Latino": 45 / 472,
-            "Middle Eastern": 15 / 472, "Multiracial": 61 / 472, "Native Hawaiian or Other Pacific Islander": 15 / 472,
-            "White": 203 / 472, "Other": 16 / 472, "I prefer not to respond": 19 / 472}
-
-    # Missing all data
-    grade = {'9': 99/366, '10': 93/366, '11': 84/366, '12': 90/366}
+    if column == "Q23":
+        df.loc[df['Q23'].str.contains(','), 'Q23'] = 'Multiracial'
 
     # empty list to store dfSlices
     dfSlices = []
